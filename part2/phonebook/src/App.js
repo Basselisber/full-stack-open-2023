@@ -34,8 +34,10 @@ const App = () => {
 
   const handleRemove = (id, name) => {
     if (window.confirm(`Delete ${name}?`)) {
-      personService.remove(id).then(deletedPerson => {
-        setPersons(persons.filter(person => person.id !== deletedPerson.id))
+      personService.remove(id)
+      .then(() => {
+        setPersons(persons
+          .filter(person => person.name !== name))
       })
     }
   }
@@ -94,12 +96,6 @@ const App = () => {
     setNewName('')
     setNewNumber('')
     }
-      setStatus('error');
-      setMessage(`Information of ${newName} has already been removed from server`);
-      setTimeout(() => {
-        setStatus(null);
-        setMessage(null);
-      }, 5000);
     };
   
 
